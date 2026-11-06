@@ -1,0 +1,123 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root,
+  [data-theme="blue"] {
+    --brand-50: #eff6ff;
+    --brand-100: #dbeafe;
+    --brand-200: #bfdbfe;
+    --brand-300: #93c5fd;
+    --brand-400: #60a5fa;
+    --brand-500: #3b82f6;
+    --brand-600: #2563eb;
+    --brand-700: #1d4ed8;
+    --brand-800: #1e40af;
+    --brand-900: #1e3a8a;
+    --brand-glow: rgba(37, 99, 235, 0.12);
+    --brand-glow-strong: rgba(37, 99, 235, 0.28);
+    --bg-page: #fbfbfd;
+  }
+
+  /* Crimson Red Theme */
+  [data-theme="red"] {
+    --brand-50: #fef2f2;
+    --brand-100: #fee2e2;
+    --brand-200: #fecaca;
+    --brand-300: #fca5a5;
+    --brand-400: #f87171;
+    --brand-500: #ef4444;
+    --brand-600: #dc2626; /* Crimson Red */
+    --brand-700: #b91c1c;
+    --brand-800: #991b1b;
+    --brand-900: #7f1d1d;
+    --brand-glow: rgba(220, 38, 38, 0.14);
+    --brand-glow-strong: rgba(220, 38, 38, 0.32);
+    --bg-page: #fdfbfb;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-family: 'Inter', 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--bg-page);
+    color: #1e293b;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.3s ease;
+  }
+
+  /* Custom subtle scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #f1f5f9;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 9999px;
+    border: 2px solid #f1f5f9;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+  }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Custom micro-texture subtle grid background */
+.bg-subtle-grid {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(226, 232, 240, 0.45) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(226, 232, 240, 0.45) 1px, transparent 1px);
+}
+
+.bg-dot-pattern {
+  background-image: radial-gradient(rgba(203, 213, 225, 0.6) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Glowing ambient mesh orbs */
+.ambient-glow {
+  background: radial-gradient(circle, var(--brand-glow) 0%, transparent 70%);
+}
+
+/* Interactive Spotlight effect for cards */
+.spotlight-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.spotlight-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), var(--brand-glow), transparent 40%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.spotlight-card:hover::before {
+  opacity: 1;
+}
